@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import newGame from './actions/newGame'
+import { connect } from 'react-redux'
 import './App.css';
+import NewGameButton from './components/NewGame'
+import Guesses from './components/Guesses'
 
 class App extends Component {
+  componentDidMount() {
+    this.props.newGame()
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <NewGameButton />
+        <Guesses />
       </div>
     );
   }
 }
 
-export default App;
+export default connect(null, { newGame })(App)
