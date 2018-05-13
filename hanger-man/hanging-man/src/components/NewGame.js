@@ -16,7 +16,7 @@ class NewGame extends PureComponent {
   render() {
     return (
       <div className='newGame-button'>
-        <button className="primary-button" onClick={this.newGame.bind(this)}>New game</button>
+        <button className="game-button" onClick={this.newGame.bind(this)}>New Game</button>
       </div>
       // bind method sets the value
       //of a function regardless of how it's called,
@@ -24,8 +24,6 @@ class NewGame extends PureComponent {
   }
 }
 
-//mapDispatchToProps - create playGame Object with
-//dispatchable action creators.
 const mapDispatchToProps = { playGame }
 export default connect (null, mapDispatchToProps)(NewGame)
 

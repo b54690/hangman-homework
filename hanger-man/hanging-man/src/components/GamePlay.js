@@ -21,7 +21,7 @@ export const isWinner = (word, guesses) => {
   else return "Game in Progress"
 }
 
-class Hangman extends PureComponent {
+class GamePlay extends PureComponent {
   static propTypes = {
     word: PropTypes.string.isrequired,
     guesses: PropTypes.array,
@@ -36,6 +36,7 @@ class Hangman extends PureComponent {
   render(){
     const currentWord = this.props.word
     const currentGuess = this.props.guess
+    const totalGuesses = wrongGuessCount(currentWord, currentGuess)
     const currentHiddenWord = showGuess(currentWord, currentGuess)
     const winningMessage = isWinner(currentWord, currentGuess)
 
@@ -50,8 +51,8 @@ class Hangman extends PureComponent {
             <input type="submit" value="Guess" />
           </form>
         </div>
-        <p>Total guesses: {currentGuess.length}/7</p>
-        <p>Guessed letters: { currentGuess.join() }</p>
+        <p>Wrong Guesses: {totalGuesses}/7</p>
+        <p>Guessed Letters: { currentGuess.join() }</p>
         <p>{ winningMessage }</p>
       </div>
     )
@@ -61,4 +62,4 @@ class Hangman extends PureComponent {
 const mapStateToProps = ({ word, guess }) => ({ word, guess })
 const mapDispatchToProps = { Guess }
 
-export default connect (mapStateToProps, mapDispatchToProps)(Hangman)
+export default connect (mapStateToProps, mapDispatchToProps)(GamePlay)
